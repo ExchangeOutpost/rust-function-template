@@ -54,6 +54,7 @@ The backtest accepts the following configurable parameters:
 | `multiplier` | number | 0.1-5.0 | 2.0 | Standard deviation multiplier for Bollinger Bands |
 | `sl` | number | 0.001-0.5 | 0.02 | Stop loss percentage (0.02 = 2%) |
 | `tp` | number | 0.001-1.0 | 0.04 | Take profit percentage (0.04 = 4%) |
+| `usd_balance` | number | 1.0+ | 1000.0 | Amount in USD to allocate per trade |
 
 ### Example Configuration
 
@@ -62,7 +63,8 @@ The backtest accepts the following configurable parameters:
     "period": 20,
     "multiplier": 2.0,
     "sl": 0.02,
-    "tp": 0.04
+    "tp": 0.04,
+    "usd_balance": 1000.0
 }
 ```
 
@@ -71,6 +73,7 @@ This configuration creates Bollinger Bands with:
 - 2 standard deviations for upper/lower bands
 - 2% stop loss
 - 4% take profit target
+- $1000 USD allocation per trade
 
 ## Backtest Output
 
