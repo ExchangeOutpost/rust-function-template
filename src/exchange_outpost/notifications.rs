@@ -11,10 +11,7 @@ pub fn schedule_webhook(path: &str, body: &str) -> Result<(), WithReturnCode<ext
         let res = add_notification("webhook".into(), path.into(), body.into());
         if res.is_err() {
             return Err(WithReturnCode::new(
-                extism_pdk::Error::new(std::io::Error::new(
-                    std::io::ErrorKind::Other,
-                    "impossible to send notification",
-                )),
+                extism_pdk::Error::new(std::io::Error::new(std::io::ErrorKind::Other, "impossible to send notification")),
                 6,
             ));
         }
@@ -28,10 +25,7 @@ pub fn schedule_email(email: &str, body: &str) -> Result<(), WithReturnCode<exti
         let res = add_notification("email".into(), email.into(), body.into());
         if res.is_err() {
             return Err(WithReturnCode::new(
-                extism_pdk::Error::new(std::io::Error::new(
-                    std::io::ErrorKind::Other,
-                    "impossible to send notification",
-                )),
+                extism_pdk::Error::new(std::io::Error::new(std::io::ErrorKind::Other, "impossible to send notification")),
                 7,
             ));
         }

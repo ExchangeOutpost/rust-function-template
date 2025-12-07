@@ -24,9 +24,7 @@ impl TickersData {
     }
     pub fn get_candles_decimal_iter(&self) -> impl Iterator<Item = Candle<Decimal>> {
         let precision = self.precision;
-        self.candles
-            .iter()
-            .map(move |candle| candle.to_decimal(precision))
+        self.candles.iter().map(move |candle| candle.to_decimal(precision))
     }
     pub fn get_candles_decimal(&self) -> Vec<Candle<Decimal>> {
         self.get_candles_decimal_iter().collect()
@@ -66,10 +64,7 @@ impl FinData {
             ))
     }
 
-    pub fn get_candles_iter(
-        &self,
-        label: &str,
-    ) -> Result<impl Iterator<Item = &Candle<f64>>, WithReturnCode<Error>> {
+    pub fn get_candles_iter(&self, label: &str) -> Result<impl Iterator<Item = &Candle<f64>>, WithReturnCode<Error>> {
         let candles = self.get_candles(label)?;
         Ok(candles.iter())
     }
@@ -98,18 +93,12 @@ impl FinData {
         ))
     }
     /// Returns the candles as Decimal, precision is taken from the ticker
-    pub fn get_candles_decimal_iter(
-        &self,
-        label: &str,
-    ) -> Result<impl Iterator<Item = Candle<Decimal>>, WithReturnCode<Error>> {
+    pub fn get_candles_decimal_iter(&self, label: &str) -> Result<impl Iterator<Item = Candle<Decimal>>, WithReturnCode<Error>> {
         let ticker = self.get_ticker(label)?;
         Ok(ticker.get_candles_decimal_iter())
     }
     /// Returns the candles as Decimal, precision is taken from the ticker
-    pub fn get_candles_decimal(
-        &self,
-        label: &str,
-    ) -> Result<Vec<Candle<Decimal>>, WithReturnCode<Error>> {
+    pub fn get_candles_decimal(&self, label: &str) -> Result<Vec<Candle<Decimal>>, WithReturnCode<Error>> {
         Ok(self.get_candles_decimal_iter(label)?.collect())
     }
 
