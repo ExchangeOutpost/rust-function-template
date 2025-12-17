@@ -90,8 +90,10 @@ pub fn run(fin_data: FinData) -> FnResult<BacktestResult> {
                     Side::SHORT => trade.open_price * (1.0 - tp),
                 };
 
-                let should_close_long = trade.side == Side::LONG && (candle.close < sl_price || candle.close > tp_price);
-                let should_close_short = trade.side == Side::SHORT && (candle.close > sl_price || candle.close < tp_price);
+                let should_close_long =
+                    trade.side == Side::LONG && (candle.close < sl_price || candle.close > tp_price);
+                let should_close_short =
+                    trade.side == Side::SHORT && (candle.close > sl_price || candle.close < tp_price);
 
                 if should_close_long || should_close_short {
                     trades.push(ClosedTrade {
