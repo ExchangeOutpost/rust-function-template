@@ -93,7 +93,10 @@ impl FinData {
         ))
     }
     /// Returns the candles as Decimal, precision is taken from the ticker
-    pub fn get_candles_decimal_iter(&self, label: &str) -> Result<impl Iterator<Item = Candle<Decimal>>, WithReturnCode<Error>> {
+    pub fn get_candles_decimal_iter(
+        &self,
+        label: &str,
+    ) -> Result<impl Iterator<Item = Candle<Decimal>>, WithReturnCode<Error>> {
         let ticker = self.get_ticker(label)?;
         Ok(ticker.get_candles_decimal_iter())
     }
