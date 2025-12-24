@@ -46,13 +46,13 @@ struct BacktestResult {
 /// - tp: Take profit percentage (e.g., 0.04 = 4%)
 /// - usd_balance: Amount in USD to allocate per trade
 #[plugin_fn]
-pub fn run(fin_data: FinData) -> FnResult<BacktestResult> {
-    let ticker = fin_data.get_ticker("symbol_data")?;
-    let bb_period = fin_data.get_call_argument("period")?;
-    let multiplier: f64 = fin_data.get_call_argument("multiplier")?;
-    let sl: f64 = fin_data.get_call_argument("sl")?;
-    let tp: f64 = fin_data.get_call_argument("tp")?;
-    let usd_balance: f64 = fin_data.get_call_argument("usd_balance")?;
+pub fn run(call_args: FunctionArgs) -> FnResult<BacktestResult> {
+    let ticker = call_args.get_ticker("symbol_data")?;
+    let bb_period = call_args.get_call_argument("period")?;
+    let multiplier: f64 = call_args.get_call_argument("multiplier")?;
+    let sl: f64 = call_args.get_call_argument("sl")?;
+    let tp: f64 = call_args.get_call_argument("tp")?;
+    let usd_balance: f64 = call_args.get_call_argument("usd_balance")?;
 
     // Validate input parameters
     if ticker.candles.len() < bb_period {
